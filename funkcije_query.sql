@@ -116,7 +116,7 @@ END;
 GO
 
 --provera fje
-select * from ParkingServis.PARKIRANO_NA where reg_br = 1;
+select @datum_park, @vreme_pocetka, @vreme_kraja, @vreme_provere, @datum_provere, @zona, @dnevna from ParkingServis.PARKIRANO_NA where reg_br = 1;
 declare @currdate date = convert(date,getdate());
 declare @date varchar(10) = '30-05-2021'
 declare @timeDiff int = ParkingServis.provera_isteka(convert(date,@date,103),'11:00','12:00','11:50',@currdate,1,'crvena');

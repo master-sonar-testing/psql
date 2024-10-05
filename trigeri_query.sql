@@ -119,7 +119,7 @@ VALUES (19,'proba@email','0645879987','Neka Ulica','12c',8,null,1,'Kikinda');
 INSERT INTO ParkingServis.KLIJENT(klijent_id,email,klij_tel,ulica,br_ulice,fizickol_id,pravnol_id,preduzetnik_id,mesto)
 VALUES (20,'proba@email','0645879987','Neka Ulica','12c',null,1,null,'Kikinda');
 
-select * from ParkingServis.KLIJENT where klijent_id = 20;
+select @klijent_id, @email from ParkingServis.KLIJENT where klijent_id = 20;
 
 DELETE FROM ParkingServis.KLIJENT where klijent_id = 20;
 
@@ -257,7 +257,7 @@ BEGIN
 END;
 
 --Provera trigera:
-select * from ParkingServis.PARKIRALISTE where park_id = 1;--bio je u crvenoj
+select @park_id, @ulica, @br_mesta from ParkingServis.PARKIRALISTE where park_id = 1;--bio je u crvenoj
 insert into ParkingServis.PARKIRALISTE values (1,90,0,'Trg Republike','crvena',2,'otvoreno',20);
 UPDATE ParkingServis.PARKIRALISTE SET zona = 'crvena' where park_id = 1;
 
@@ -329,11 +329,11 @@ END
 GO
 
 --PROVERA TRIGERA
-select * from ParkingServis.PARKIRANO_NA
-select * from ParkingServis.PARKIRALISTE
-select * from ParkingServis.PARKING_SLUZBA
-SELECT * FROM ParkingServis.VOZILO
-SELECT * FROM ParkingServis.KONTROLOR
+select @park_id, @reg_br, @datum_izd, @vreme_izd from ParkingServis.PARKIRANO_NA
+select @park_id, @ulica, @br_mesta from ParkingServis.PARKIRALISTE
+select @park_id, @grad from ParkingServis.PARKING_SLUZBA
+SELECT @klijent_id, @reg_br FROM ParkingServis.VOZILO
+SELECT @kontrolor_id, @sluzba_id, @zap_ime, @zap_prz FROM ParkingServis.KONTROLOR
 INSERT INTO ParkingServis.PARKIRANO_NA(reg_br,park_id,sluzba_id,kontrolor_id,datum_park,vreme_pocetka) VALUES (8,1,2,1,GETDATE(),'14:31')
 DELETE FROM ParkingServis.PARKIRANO_NA WHERE reg_br = 8;
 

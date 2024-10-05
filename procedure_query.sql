@@ -64,10 +64,10 @@ set @d1 = CONVERT(date,GETDATE(),103);
 set @t1 = CONVERT(time,GETDATE(),103);
 EXEC ParkingServis.pc_provera_park 'NS-246-SS', 1, @t1, @d1;
 
-select * from ParkingServis.VRSTA_KAZNE;
-select * from ParkingServis.KAZNA;
-select * from ParkingServis.VOZILO;
-select * from ParkingServis.PARKIRANO_NA;
+select @vrsta_naziv from ParkingServis.VRSTA_KAZNE;
+select @vrsta_id, @serijski_br, @reg_br from ParkingServis.KAZNA;
+select @reg_br from ParkingServis.VOZILO;
+select @reg_br, @park_id, @datum_izd, @vreme_izd from ParkingServis.PARKIRANO_NA;
 delete from ParkingServis.KAZNA where reg_br = 2;
 /*
 	PROCEDURA 2:
@@ -117,9 +117,9 @@ minvalue 8757
 increment by 1
 cycle
 
-select * from ParkingServis.KAZNA;
-select * from ParkingServis.PARKIRANO_NA;
-select * from ParkingServis.VOZILO;
+select @vrsta_id, @serijski_br, @reg_br from ParkingServis.KAZNA;
+select @reg_br from ParkingServis.VOZILO;
+select @reg_br, @park_id, @datum_izd, @vreme_izd from ParkingServis.PARKIRANO_NA;
 
 DELETE FROM ParkingServis.KAZNA where reg_br = 1;
 
